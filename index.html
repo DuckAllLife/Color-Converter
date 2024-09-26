@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Cores</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Container/Quadrado onde ficará o conversor de cores (onde será alterado as configurações utilizadas) -->
+    <div class="color-converter">
+        <h1>Conversor de Cores</h1>
+
+        <!-- Dropdown para escolher o sistema de cor que será utilizado -->
+        <div class="choose-system">
+            <label for="color-system">Escolha o sistema de cor:</label>
+            <select id="color-system" onchange="updateLabels()">
+                <option value="rgb">RGB</option>
+                <option value="cmyk">CMYK</option>
+                <option value="hsl">HSL</option>
+                <option value="hsv">HSV</option>
+            </select>
+        </div>
+
+        <!-- Deslizantes e caixas de edição para mudar a cor -->
+        <div class="inputs">
+            <div class="slider-container">
+                <label id="label1">R:</label> <!-- Título de qual cor é -->
+                <input type="range" id="input1" min="0" max="255" value="0" oninput="updateColorFromSlider(1)"> <!-- Deslizante para alterar a cor -->
+                <input type="number" id="value1" min="0" max="255" value="0" oninput="updateColorFromNumberInput(1)"> <!-- Caixa de edição para alterar a cor -->
+            </div>
+            <div class="slider-container">
+                <label id="label2">G:</label>
+                <input type="range" id="input2" min="0" max="255" value="0" oninput="updateColorFromSlider(2)">
+                <input type="number" id="value2" min="0" max="255" value="0" oninput="updateColorFromNumberInput(2)">
+            </div>
+            <div class="slider-container">
+                <label id="label3">B:</label>
+                <input type="range" id="input3" min="0" max="255" value="0" oninput="updateColorFromSlider(3)">
+                <input type="number" id="value3" min="0" max="255" value="0" oninput="updateColorFromNumberInput(3)">
+            </div>
+            <!-- Div oculta que é utilizada somente no sistema de cor CMYK -->
+            <div id="div4" class="slider-container" style="display:none;">
+                <label id="label4">K:</label>
+                <input type="range" id="input4" min="0" max="100" value="100" oninput="updateColorFromSlider(4)">
+                <input type="number" id="value4" min="0" max="100" value="100" oninput="updateColorFromNumberInput(4)">
+            </div>
+        </div>       
+
+        <!-- Caixa de texto com o valor HEX (tanto para copiar o valor obtido, quanto para alterar a cor) -->
+        <div class="hex-input">
+            <label for="hex">Cor HEX:</label>
+            <input type="text" id="hex" maxlength="7" oninput="updateColorFromHex()" placeholder="#000000">
+        </div>
+        <p>Criado por Gabriel Rocha</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
